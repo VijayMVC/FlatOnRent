@@ -1,0 +1,85 @@
+﻿@model IEnumerable<RentFlat.Model.Rent>
+@{
+    ViewBag.Title = "Home Page";
+    var keywords = ViewBag.keywords;
+    var city = ViewBag.city;
+}
+
+<div class="row top-home-banner">
+    <div class="container padding-top-30">
+        <div class="row">
+            <div class="col-xs-12 text-left padding-top-0 padding-left-0 padding-bottom-20">
+                <strong class="text-white font-48 margin-top-10 font-lato font-weight-700" style="color: #ffffff;">
+                    Find the best apartments
+                </strong>
+                <p class="text-white font-17 padding-top-15" style="color: #ffffff;">
+                    Get apartments at your best location &nbsp;|&nbsp; aparment booking
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 padding-top-30 padding-bottom-30">
+                @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+            {
+                    <div class="col-md-6 col-sm-6 padding-0">
+                        <div class="form-group text-left">
+                            <input class="form-control" type="text" name="keywords" 
+                                placeholder="Search By keywords i.e apartments, rooms, etc" value=@keywords >
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4 padding-0">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="city" placeholder="Enter City or ZipCode" value=@city >
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-2 text-left">
+                        <div class="form-group">
+                            <input type="submit" value="Search" class="form-control btn btn-success">
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    @if(Model != null && Model.Count() > 0)
+    {
+        <h5>Search Results: @Model.Count()</h5>
+
+        <table class="table table-hover table-responsive">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Flat.FlatName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Flat.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Flat.City)
+                </th>
+                <th>Action</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Flat.FlatName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Flat.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Flat.City)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Rents", "Home", new { id = item.ID }, null)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+</div>

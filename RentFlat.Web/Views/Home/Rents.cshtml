@@ -1,0 +1,197 @@
+﻿@model RentFlat.Web.Models.ViewModels.RentViewModel
+@{
+    ViewBag.Title = "Rent Flat Details";
+}
+<div class="row">
+    <h2>
+        @ViewBag.Title
+    </h2>
+    <hr />
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.RoomNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RoomNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Country)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Country)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.City)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.City)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.District)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.District)
+            </dd>
+            @if (Model.Facilities != null && Model.Facilities.Count() > 0)
+            {
+                <dt>
+                    Facilities
+                </dt>
+                foreach (var i in Model.Facilities)
+                {
+                    <dd>
+                        @Html.DisplayFor(model => i.Type)
+                    </dd>
+                }
+            }
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PriceForDay)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PriceForDay)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PriceForMonth)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PriceForMonth)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Latitude)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Latitude)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Longitude)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Longitude)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ZipCode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ZipCode)
+            </dd>
+            @if (Model.Pictures != null && Model.Pictures.Count() > 0)
+            {
+                <dt>
+                    Pictures
+                </dt>
+                foreach (var i in Model.Pictures)
+                {
+                    <dd>
+                        @Html.DisplayFor(model => i.Name)
+                    </dd>
+                }
+            }
+
+        </dl>
+    </div>
+    <div class="col-md-6">
+        <div id="map"></div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        //$(document).ready(function () {
+        //    initMap();
+        //});
+        var map;
+        function initMap() {
+            var modelPoint = new google.maps.LatLng(@Model.Latitude, @Model.Longitude);
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: modelPoint,
+                zoom: 18
+            });
+            var coordInfoWindow = new google.maps.InfoWindow();
+            coordInfoWindow.setContent(createInfoWindowContent(modelPoint, map.getZoom()));
+            coordInfoWindow.setPosition(modelPoint);
+            coordInfoWindow.open(map);
+
+            map.addListener('zoom_changed', function() {
+                coordInfoWindow.setContent(createInfoWindowContent(modelPoint, map.getZoom()));
+                coordInfoWindow.open(map);
+            });
+        }
+        var TILE_SIZE = 256;
+
+        function createInfoWindowContent(latLng, zoom) {
+            var scale = 1 << zoom;
+
+            var worldCoordinate = project(latLng);
+
+            var pixelCoordinate = new google.maps.Point(
+                Math.floor(worldCoordinate.x * scale),
+                Math.floor(worldCoordinate.y * scale));
+
+            var tileCoordinate = new google.maps.Point(
+                Math.floor(worldCoordinate.x * scale / TILE_SIZE),
+                Math.floor(worldCoordinate.y * scale / TILE_SIZE));
+
+            return [
+                'Address: ' + '@Model.Address',
+                'Day Price: ' + '@Model.PriceForDay',
+                'Month Price: ' + '@Model.PriceForMonth'
+            ].join('<br>');
+        }
+
+        function project(latLng) {
+            var siny = Math.sin(latLng.lat() * Math.PI / 180);
+
+            // Truncating to 0.9999 effectively limits latitude to 89.189. This is
+            // about a third of a tile past the edge of the world tile.
+            siny = Math.min(Math.max(siny, -0.9999), 0.9999);
+
+            return new google.maps.Point(
+                TILE_SIZE * (0.5 + latLng.lng() / 360),
+                TILE_SIZE * (0.5 - Math.log((1 + siny) / (1 - siny)) / (4 * Math.PI)));
+        }
+
+    </script>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyEA_0SheytW1x5JWIfkDXfRmadZlb1zs&callback=initMap">
+    </script>
+}
+

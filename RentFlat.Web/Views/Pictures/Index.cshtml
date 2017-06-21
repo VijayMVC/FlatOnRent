@@ -1,0 +1,50 @@
+﻿@model IEnumerable<RentFlat.Model.Picture>
+
+@{
+    ViewBag.Title = "List of Flat Pictures";
+}
+
+<div class="row">
+    <h2>
+        @ViewBag.Title
+        @Html.ActionLink("Add Image", "Create", null, new { @class = "btn btn-success pull-right" })
+    </h2>
+</div>
+
+<div class="row">
+    <table class="table table-bordered table-responsive table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Flat.FlatName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LinkToImage)
+            </th>
+            <th>ACTION</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Flat.FlatName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LinkToImage)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

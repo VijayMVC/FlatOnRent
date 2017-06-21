@@ -1,0 +1,44 @@
+﻿@model IEnumerable<RentFlat.Model.FacilityInFlat>
+
+@{
+    ViewBag.Title = "Facilities in Flat";
+}
+
+<div class="row">
+    <h2>
+        @ViewBag.Title
+        @Html.ActionLink("Add Facility", "Create", null, new { @class="btn btn-success pull-right" })
+    </h2>
+</div>
+
+<div class="row">
+    <table class="table table-hover table-responsive">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Facility.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Flat.FlatName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Facility.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Flat.FlatName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

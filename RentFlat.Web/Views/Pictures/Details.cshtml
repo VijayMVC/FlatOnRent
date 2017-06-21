@@ -1,0 +1,45 @@
+﻿@model RentFlat.Model.Picture
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Details";
+    var username = User.Identity.GetUserName();
+    var imagePath = "~/Content/Uploads/" + username + "/" + Model.FlatId + "/" + Model.LinkToImage;
+}
+
+<div class="row">
+    <h2>Image Details</h2>
+    <hr />
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Flat.FlatName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Flat.FlatName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+        </dl>
+    </div>
+    <div class="col-md-6">
+        <img src="@Url.Content(imagePath)" alt="image" class="img-responsive" />
+    </div>
+</div>
+<div class="row">
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+

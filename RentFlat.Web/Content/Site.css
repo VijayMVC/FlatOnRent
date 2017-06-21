@@ -1,0 +1,68 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 600px;
+}
+
+.padding-top-40 {
+    padding-top: 40px;
+}
+
+.padding-top-30 {
+    padding-top: 30px;
+}
+
+.padding-bottom-15 {
+    padding-bottom: 15px;
+}
+
+.padding-bottom-30 {
+    padding-bottom: 30px;
+}
+
+.padding-0 {
+    padding: 0px!important;
+}
+
+.top-home-banner {
+    background: url('Images/rent.jpg') no-repeat !important;
+    background-size: cover;
+    min-height: 200px;
+    padding-top: 40px;
+    margin-bottom: 15px;
+}
+.top-home-banner .font-48 {
+    font-size: 3.2rem;
+}
+
+.home-search-form input#keyword,
+.home-search-form input#location {
+    border-radius: 3px;
+}
+
+.search-stacks {
+    min-height: 30vh !important;
+}
+
+#map {
+    height: 100%;
+}

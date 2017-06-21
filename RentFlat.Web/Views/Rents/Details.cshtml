@@ -1,0 +1,42 @@
+﻿@model RentFlat.Model.Rent
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Rent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Flat.FlatName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flat.FlatName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartOfRent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartOfRent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndOfRent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndOfRent)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

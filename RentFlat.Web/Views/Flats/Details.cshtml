@@ -1,0 +1,120 @@
+﻿@model RentFlat.Web.Models.ViewModels.FlatDetailViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Flat Details</h2>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Flat.RoomNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flat.RoomNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Flat.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flat.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Flat.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flat.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Flat.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flat.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Flat.District)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flat.District)
+        </dd>
+        <dt>
+            Facilities
+        </dt>
+        @foreach (var i in Model.Facilities)
+        {
+            <dd>
+                @Html.DisplayFor(model => i.Type)
+            </dd>
+        }
+        <dt>
+            @Html.DisplayNameFor(model => model.Flat.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flat.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Flat.PriceForDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flat.PriceForDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Flat.PriceForMonth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flat.PriceForMonth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Flat.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flat.Latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Flat.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flat.Longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Flat.ZipCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flat.ZipCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Flat.OwnerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flat.OwnerId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Flat.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
