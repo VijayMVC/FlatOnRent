@@ -1,0 +1,44 @@
+﻿@model IEnumerable<RentFlat.Model.City>
+
+@{
+    ViewBag.Title = "List of Cities";
+}
+
+<div class="row">
+    <h2>
+        @ViewBag.Title
+        @Html.ActionLink("Add ", "Create", null, new { @class = "btn btn-success pull-right" })
+    </h2>
+</div>
+
+<div class="row">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Country.CountryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CityName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country.CountryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CityName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

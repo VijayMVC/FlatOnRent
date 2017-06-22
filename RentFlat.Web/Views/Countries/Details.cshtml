@@ -1,0 +1,28 @@
+﻿@model RentFlat.Model.Country
+
+@{
+    ViewBag.Title = "Country Details";
+}
+
+<div class="row">
+    <h2>@ViewBag.Title</h2>
+    <hr />
+</div>
+
+<div class="row">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryName)
+        </dd>
+
+    </dl>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+
