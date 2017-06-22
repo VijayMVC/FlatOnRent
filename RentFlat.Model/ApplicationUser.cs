@@ -53,5 +53,7 @@ namespace RentFlat.Model
         public System.Data.Entity.DbSet<RentFlat.Model.Picture> Pictures { get; set; }
 
         public System.Data.Entity.DbSet<RentFlat.Model.Rent> Rents { get; set; }
+        public System.Data.Entity.DbSet<RentFlat.Model.Country> Countries { get; set; }
+        public System.Data.Entity.DbSet<RentFlat.Model.City> Cities { get; set; }
     }
 }

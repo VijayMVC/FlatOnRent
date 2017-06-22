@@ -58,6 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationUser.cs" />
+    <Compile Include="City.cs" />
+    <Compile Include="Country.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Facility.cs" />
     <Compile Include="FacilityInFlat.cs" />
