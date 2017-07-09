@@ -1,4 +1,5 @@
 ﻿using RentFlat.Model;
+using RentFlat.Web.Infrastructure.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,6 +20,7 @@ namespace RentFlat.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            AutoMapperConfiguration.RegisterMaps();
             Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
         }
     }
