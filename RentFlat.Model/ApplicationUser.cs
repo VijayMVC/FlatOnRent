@@ -10,12 +10,31 @@ using System.Threading.Tasks;
 
 namespace RentFlat.Model
 {
+    public enum UserRoles
+    {
+        Administrator = 1,
+        Manager = 2,
+        Operator = 4,
+        Driver = 8,
+    }
     public class ApplicationUser : IdentityUser
     {
         [Display(Name="First Name")]
         public string FirstName { set; get; }
+
+        [Display(Name = "Last Name")]
         public string LastName { set; get; }
 
+        [StringLength(100)]
+        public string DefaultAddress { get; set; }
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
+
+        [StringLength(10)]
+        public string MobileNumber { get; set; }
+
+        [StringLength(100)]
+        public string CompanyName { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

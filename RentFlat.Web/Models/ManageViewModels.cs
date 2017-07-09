@@ -5,6 +5,32 @@ using Microsoft.Owin.Security;
 
 namespace RentFlat.Web.Models
 {
+
+    public class ProfileViewModel
+    {
+        [Display(Name = "First Name")]
+        public string FirstName { set; get; }
+
+        [Display(Name = "Last Name")]
+        public string LastName { set; get; }
+
+        [StringLength(100)]
+        [Display(Name = "Address")]
+        public string DefaultAddress { get; set; }
+
+        [Display(Name = "Latitude")]
+        public double? Latitude { get; set; }
+        [Display(Name = "Longitude")]
+        public double? Longitude { get; set; }
+
+        [StringLength(10)]
+        [Display(Name = "Mobile Number")]
+        public string MobileNumber { get; set; }
+
+        [StringLength(100)]
+        [Display(Name = "Company Name")]
+        public string CompanyName { get; set; }
+    }
     public class IndexViewModel
     {
         public bool HasPassword { get; set; }

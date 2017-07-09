@@ -75,6 +75,12 @@ namespace RentFlat.Web.Controllers
             return View(model);
         }
 
+        public async Task<ActionResult> UpdateProfile()
+        {
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            return View(user);
+        }
+
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]
